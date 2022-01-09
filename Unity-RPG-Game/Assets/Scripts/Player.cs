@@ -2,29 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
-
-    [SerializeField] private float speed;
-    private Vector2 direction;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         GetInput();
-        Move();
-    }
-
-    public void Move()
-    {
-        transform.Translate(direction * speed * Time.deltaTime);
         
+        // Character.cs scripti içerisindeki Update() fonksiyonunda bulunan komutları çalıştırır
+        base.Update();
     }
 
+    
+
+    // Klavyeden girilen WASD değerlerini tespit eder ve Vector2 türündeki
+    // direction değişkenine bu değeri aktarır. Klavyeden parmağımızı çektiğimizde
+    // değer sıfırlanır (Vector2.zero)
     private void GetInput()
     {
         direction = Vector2.zero;
