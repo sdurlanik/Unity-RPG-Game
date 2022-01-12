@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,12 @@ public class Character : MonoBehaviour
 {    
     [SerializeField] protected float speed;
     protected Vector2 direction;
-  
+
+
+    protected virtual void Start()
+    {
+        
+    }
 
     protected virtual  void Update()
     {

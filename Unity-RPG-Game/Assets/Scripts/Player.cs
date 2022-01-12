@@ -4,9 +4,22 @@ using UnityEngine;
 
 public class Player : Character
 {
+    [SerializeField]private Stat health;
+    [SerializeField]private Stat mana;
+    [SerializeField] private float InitHealth = 100;
+    [SerializeField] private float InitMana = 50;
+
+    protected override void Start()
+    {
+        health.Initialize(InitHealth,InitHealth);
+        mana.Initialize(InitMana,InitMana);
+        base.Start();
+    }
+
     protected override void Update()
     {
         GetInput();
+        health.MyCurrentValue = 100;
         
         // Character.cs scripti içerisindeki Update() fonksiyonunda bulunan komutları çalıştırır
         base.Update();
