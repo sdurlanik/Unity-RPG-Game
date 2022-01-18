@@ -16,8 +16,12 @@ public class Player : Character
     [SerializeField] private GameObject rightSpear;
 
     [SerializeField] private GameObject[] spellPrefab;
+    [SerializeField] private Transform[] spellExitPoints;
+    private int spellExitIndex;
 
     private bool coroutineRunning;
+    
+    
 
    
     
@@ -61,6 +65,7 @@ public class Player : Character
 
             if (isFlipped && !myAnimator.GetBool("rightAttack"))
             {
+                spellExitIndex = 0;
                 playerSpriteRenderer.flipX = false;
                 isFlipped = false;
             }
@@ -76,6 +81,7 @@ public class Player : Character
             direction += Vector2.right;
             if (!isFlipped && !myAnimator.GetBool("leftAttack"))
             {
+                spellExitIndex = 1;
                 playerSpriteRenderer.flipX = true;
                 isFlipped = true;
             }
@@ -125,7 +131,7 @@ public class Player : Character
 
     public void Castspell()
     {
-        Instantiate(spellPrefab[0], transform.position, Quaternion.identity);
+        Instantiate(spellPrefab[0], spellExitPoints[spellExitIndex].position, Quaternion.identity);
     }
 
     private void SetSpearPosition()
