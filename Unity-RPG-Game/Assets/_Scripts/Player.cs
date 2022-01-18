@@ -15,6 +15,10 @@ public class Player : Character
     [SerializeField] private GameObject leftSpear;
     [SerializeField] private GameObject rightSpear;
 
+    [SerializeField] private GameObject[] spellPrefab;
+
+    private bool coroutineRunning;
+
    
     
 
@@ -80,13 +84,20 @@ public class Player : Character
         if (Input.GetKeyDown(KeyCode.Space))
         {
             myAnimator.SetBool("isAttacking", true);
-            StartCoroutine(StartAttack());
+
+            if (!coroutineRunning)
+            {
+                StartCoroutine(StartAttack());
+
+            }
         }
     }
 
     // Karakter saldırı fonksiyonu
-    public IEnumerator StartAttack()
+    private IEnumerator StartAttack()
     {
+        coroutineRunning = true;
+        
         myAnimator.SetBool("isAttacking",true);
         
         if (isFlipped)
@@ -107,6 +118,14 @@ public class Player : Character
         myAnimator.SetBool("leftAttack", false);
         myAnimator.SetBool("rightAttack", false);
         myAnimator.SetBool("isAttacking", false);
+        
+        Castspell();
+        coroutineRunning = false;
+    }
+
+    public void Castspell()
+    {
+        Instantiate(spellPrefab[0], transform.position, Quaternion.identity);
     }
 
     private void SetSpearPosition()
