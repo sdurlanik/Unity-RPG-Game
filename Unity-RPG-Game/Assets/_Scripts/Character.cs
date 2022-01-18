@@ -10,7 +10,7 @@ public class Character : MonoBehaviour
     
     private Rigidbody2D myRigidbody;
 
-    private Animator myAnimator;
+    protected Animator myAnimator;
 
 
     protected virtual void Start()
