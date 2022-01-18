@@ -13,6 +13,9 @@ public class Stat : MonoBehaviour
    public float MyMaxValue { get; set; }
    private float currentValue;
 
+   [SerializeField]
+   private Text statValue;
+
    public float MyCurrentValue
    {
       get
@@ -36,6 +39,7 @@ public class Stat : MonoBehaviour
          }
 
          currentFill = currentFill / MyMaxValue;
+         statValue.text = currentValue + "/" + MyMaxValue;
       }
    }
 
@@ -46,10 +50,7 @@ public class Stat : MonoBehaviour
 
    private void Update()
    {
-      if (currentFill != content.fillAmount)
-      {
-         content.fillAmount = Mathf.Lerp(content.fillAmount, currentFill, Time.deltaTime * lerpSpeed);
-      }
+ 
       
    }
 
