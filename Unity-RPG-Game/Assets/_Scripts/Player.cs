@@ -12,9 +12,6 @@ public class Player : Character
     private SpriteRenderer playerSpriteRenderer;
     private bool isFlipped = false;
 
-    [SerializeField] private GameObject leftSpear;
-    [SerializeField] private GameObject rightSpear;
-
    
     
 
@@ -33,7 +30,7 @@ public class Player : Character
     protected override void Update()
     {
         GetInput();
-        SetSpearPosition();
+
         // Character.cs scripti içerisindeki Update() fonksiyonunda bulunan komutları çalıştırır
         base.Update();
     }
@@ -55,7 +52,7 @@ public class Player : Character
         {
             direction += Vector2.left;
 
-            if (isFlipped && !myAnimator.GetBool("rightAttack"))
+            if (isFlipped)
             {
                 playerSpriteRenderer.flipX = false;
                 isFlipped = false;
@@ -70,56 +67,11 @@ public class Player : Character
         if (Input.GetKey(KeyCode.D))
         {
             direction += Vector2.right;
-            if (!isFlipped && !myAnimator.GetBool("leftAttack"))
+            if (!isFlipped)
             {
                 playerSpriteRenderer.flipX = true;
                 isFlipped = true;
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            myAnimator.SetBool("isAttacking", true);
-            StartCoroutine(StartAttack());
-        }
-    }
-
-    // Karakter saldırı fonksiyonu
-    public IEnumerator StartAttack()
-    {
-        myAnimator.SetBool("isAttacking",true);
-        
-        if (isFlipped)
-        {
-            myAnimator.SetBool("rightAttack",true);
-            myAnimator.SetBool("leftAttack", false);
-        }
-        else
-        {
-            myAnimator.SetBool("leftAttack", true);
-            myAnimator.SetBool("rightAttack",false);
-
-        }
-        
-        
-        yield return new WaitForSeconds(1); // Debug için hardcode (Daha sonra değiştirilecek)
-        
-        myAnimator.SetBool("leftAttack", false);
-        myAnimator.SetBool("rightAttack", false);
-        myAnimator.SetBool("isAttacking", false);
-    }
-
-    private void SetSpearPosition()
-    {
-        if (isFlipped)
-        {
-            leftSpear.SetActive(false);
-            rightSpear.SetActive(true);
-        }
-        else
-        {
-            leftSpear.SetActive(true);
-            rightSpear.SetActive(false);
         }
     }
 }
