@@ -13,7 +13,7 @@ public class Character : MonoBehaviour
     {
         
     }
-
+    //Deneme
     protected virtual  void Update()
     {
         Move();
