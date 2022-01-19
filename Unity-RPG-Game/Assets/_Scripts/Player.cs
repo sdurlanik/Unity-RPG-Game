@@ -96,22 +96,10 @@ public class Player : Character
                 isFlipped = true;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Block();
-            myAnimator.SetBool("isAttacking", true);
-
-            if (MyTarget !=null && !coroutineRunning && InlineOfSight())
-            {
-                StartCoroutine(StartAttack());
-
-            }
-        }
     }
 
     // Karakter saldırı fonksiyonu
-    private IEnumerator StartAttack()
+    private IEnumerator StartAttack(int spellIndex)
     {
         coroutineRunning = true;
         
@@ -136,13 +124,22 @@ public class Player : Character
         myAnimator.SetBool("rightAttack", false);
         myAnimator.SetBool("isAttacking", false);
         
-        Castspell();
+        Instantiate(spellPrefab[spellIndex], spellExitPoints[spellExitIndex].position, Quaternion.identity);
+
         coroutineRunning = false;
     }
 
-    public void Castspell()
+    public void Castspell(int spellIndex)
     {
-        Instantiate(spellPrefab[0], spellExitPoints[spellExitIndex].position, Quaternion.identity);
+        Block();
+        myAnimator.SetBool("isAttacking", true);
+
+        if (MyTarget !=null && !coroutineRunning && InlineOfSight())
+        {
+            StartCoroutine(StartAttack(spellIndex));
+
+        }
+        
     }
 
     private void SetSpearPosition()
