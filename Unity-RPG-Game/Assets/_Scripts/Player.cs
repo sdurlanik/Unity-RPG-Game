@@ -23,7 +23,7 @@ public class Player : Character
     [SerializeField] private Block[] blocks;
     private int blockIndex = 0;
 
-    private GameObject target;
+    public Transform MyTarget { get; set; }
 
 
 
@@ -37,8 +37,7 @@ public class Player : Character
         mana.Initialize(InitMana,InitMana);
 
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
-
-        target = GameObject.Find("Target");
+        
         
         
         
@@ -103,7 +102,7 @@ public class Player : Character
             Block();
             myAnimator.SetBool("isAttacking", true);
 
-            if (!coroutineRunning && InlineOfSight())
+            if (MyTarget !=null && !coroutineRunning && InlineOfSight())
             {
                 StartCoroutine(StartAttack());
 
@@ -163,10 +162,10 @@ public class Player : Character
     // Targetin playerın görüş açısında olup olmadığını kontrol eder
     private bool InlineOfSight()
     {
-        Vector3 targetDirection = (target.transform.position - transform.position).normalized;
+        Vector3 targetDirection = (MyTarget.transform.position - transform.position).normalized;
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDirection,
-            Vector2.Distance(transform.position, target.transform.position),256);
+            Vector2.Distance(transform.position, MyTarget.transform.position),256);
 
         if (hit.collider == null)
         {
