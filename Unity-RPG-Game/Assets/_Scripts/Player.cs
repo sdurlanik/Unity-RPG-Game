@@ -11,6 +11,7 @@ public class Player : Character
     
     private SpriteRenderer playerSpriteRenderer;
     private bool isFlipped = false;
+    private bool coroutineRunning;
 
     [SerializeField] private GameObject leftSpear;
     [SerializeField] private GameObject rightSpear;
@@ -18,13 +19,17 @@ public class Player : Character
     [SerializeField] private GameObject[] spellPrefab;
     [SerializeField] private Transform[] spellExitPoints;
     private int spellExitIndex;
+    
+    [SerializeField] private Block[] blocks;
+    private int blockIndex = 0;
 
-    private bool coroutineRunning;
-    
-    
+    private GameObject target;
 
-   
-    
+
+
+
+
+
 
     protected override void Start()
     {
@@ -32,6 +37,8 @@ public class Player : Character
         mana.Initialize(InitMana,InitMana);
 
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
+
+        target = GameObject.Find("Target");
         
         
         
@@ -56,6 +63,7 @@ public class Player : Character
         direction = Vector2.zero;
         if (Input.GetKey(KeyCode.W))
         {
+            blockIndex = 2;
             direction += Vector2.up;
         }
 
@@ -66,6 +74,7 @@ public class Player : Character
             if (isFlipped && !myAnimator.GetBool("rightAttack"))
             {
                 spellExitIndex = 0;
+                blockIndex = 0;
                 playerSpriteRenderer.flipX = false;
                 isFlipped = false;
             }
@@ -73,6 +82,7 @@ public class Player : Character
 
         if (Input.GetKey(KeyCode.S))
         {
+            blockIndex = 3;
             direction += Vector2.down;
         }
 
@@ -82,6 +92,7 @@ public class Player : Character
             if (!isFlipped && !myAnimator.GetBool("leftAttack"))
             {
                 spellExitIndex = 1;
+                blockIndex = 1;
                 playerSpriteRenderer.flipX = true;
                 isFlipped = true;
             }
@@ -89,9 +100,10 @@ public class Player : Character
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Block();
             myAnimator.SetBool("isAttacking", true);
 
-            if (!coroutineRunning)
+            if (!coroutineRunning && InlineOfSight())
             {
                 StartCoroutine(StartAttack());
 
@@ -146,5 +158,31 @@ public class Player : Character
             leftSpear.SetActive(true);
             rightSpear.SetActive(false);
         }
+    }
+
+    // Targetin playerın görüş açısında olup olmadığını kontrol eder
+    private bool InlineOfSight()
+    {
+        Vector3 targetDirection = (target.transform.position - transform.position).normalized;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDirection,
+            Vector2.Distance(transform.position, target.transform.position),256);
+
+        if (hit.collider == null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private void Block()
+    {
+        foreach (Block b in blocks)
+        {
+            b.Deactivate();
+        }
+        
+        blocks[blockIndex].Activate();
     }
 }
