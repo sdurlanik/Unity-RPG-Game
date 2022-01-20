@@ -716,6 +716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  hitBox: {fileID: 0}
   health: {fileID: 0}
   mana: {fileID: 0}
   InitHealth: 100
@@ -750,6 +751,7 @@ MonoBehaviour:
   spellName: {fileID: 0}
   icon: {fileID: 0}
   castTime: {fileID: 0}
+  canvasGroup: {fileID: 0}
   spells:
   - name: Fireball
     damage: 5

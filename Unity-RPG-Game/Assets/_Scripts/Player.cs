@@ -102,6 +102,8 @@ public class Player : Character
     // Karakter saldırı fonksiyonu
     private IEnumerator StartAttack(int spellIndex)
     {
+        Transform currentTarget = MyTarget;
+        
         coroutineRunning = true;
         Spell newSpell = spellBook.CastSpell(spellIndex);
         
@@ -125,9 +127,14 @@ public class Player : Character
         myAnimator.SetBool("leftAttack", false);
         myAnimator.SetBool("rightAttack", false);
         myAnimator.SetBool("isAttacking", false);
+
+        if (currentTarget != null && InlineOfSight())
+        {
+            SpellScript s = Instantiate(newSpell.MySpellPrefab, spellExitPoints[spellExitIndex].position, Quaternion.identity).GetComponent<SpellScript>();
+            s.MyTarget = currentTarget;
+        }
         
-        SpellScript s = Instantiate(newSpell.MySpellPrefab, spellExitPoints[spellExitIndex].position, Quaternion.identity).GetComponent<SpellScript>();
-        s.MyTarget = MyTarget;
+       
         coroutineRunning = false;
     }
 
