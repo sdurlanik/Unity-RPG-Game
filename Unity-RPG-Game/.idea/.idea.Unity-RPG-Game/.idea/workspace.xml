@@ -3,16 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="ffd32b3c-c5ec-4316-a3c8-ddfbcd9b8906" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-RPG-Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-RPG-Game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/AvatgarBG.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/AvatgarBG.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Health.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Health.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/HealthBG.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/HealthBG.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Mana.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Mana.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FirePrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FirePrefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/IcePrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/IcePrefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/LightningPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/LightningPrefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Spell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Spell.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Spell.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Spell.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/textures/Castle_Background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/textures/Castle_Background.jpg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/textures/PackCastle01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/textures/PackCastle01.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +30,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/_Scripts/SpellScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.psdimporter@4.1.2/Editor/PSDImporter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/UIManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Spell.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -84,6 +92,7 @@
       <workItem from="1641742233327" duration="1245000" />
       <workItem from="1642016009376" duration="1343000" />
       <workItem from="1642493034043" duration="5537000" />
+      <workItem from="1642665828016" duration="3751000" />
     </task>
     <servers />
   </component>

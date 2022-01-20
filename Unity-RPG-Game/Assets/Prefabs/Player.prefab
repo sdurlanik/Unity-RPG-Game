@@ -624,6 +624,7 @@ GameObject:
   - component: {fileID: 6223602486601284186}
   - component: {fileID: 6223602486601284187}
   - component: {fileID: 6223602486601284185}
+  - component: {fileID: 4140690726225061154}
   - component: {fileID: 6223602486601284184}
   - component: {fileID: 6223602486601284191}
   m_Layer: 0
@@ -721,10 +722,6 @@ MonoBehaviour:
   InitMana: 50
   leftSpear: {fileID: 6223602485394119019}
   rightSpear: {fileID: 6223602487155562870}
-  spellPrefab:
-  - {fileID: 5653049518489302385, guid: 06134138b55134d55b5d8001074c5549, type: 3}
-  - {fileID: 5954278816370737340, guid: eeb2c8a65dfbf48dbab1911b27cde608, type: 3}
-  - {fileID: 7519381945897681334, guid: b5b2501045fce4999b92195ac01df1a3, type: 3}
   spellExitPoints:
   - {fileID: 1663227070}
   - {fileID: 681584292}
@@ -737,6 +734,40 @@ MonoBehaviour:
     second: {fileID: 1615961585}
   - first: {fileID: 495881055}
     second: {fileID: 1294174780}
+--- !u!114 &4140690726225061154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6223602486601284164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85247e104060649ccb6aeaf2de5311ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spells:
+  - name: Fireball
+    damage: 5
+    icon: {fileID: 21300000, guid: 03ded755a3b2a4e12bbf65bf0782101d, type: 3}
+    speed: 5
+    castTime: 2.5
+    spellPrefab: {fileID: 5653049518489302385, guid: 06134138b55134d55b5d8001074c5549, type: 3}
+    barColor: {r: 1, g: 0.33490568, b: 0.33490568, a: 1}
+  - name: Iceball
+    damage: 5
+    icon: {fileID: 21300000, guid: 0245c7ced43a04684bf8b28c6b49ac0b, type: 3}
+    speed: 5
+    castTime: 1.5
+    spellPrefab: {fileID: 5954278816370737340, guid: eeb2c8a65dfbf48dbab1911b27cde608, type: 3}
+    barColor: {r: 0.29214135, g: 0.913244, b: 0.9528302, a: 1}
+  - name: lightningball
+    damage: 5
+    icon: {fileID: 21300000, guid: f78ed540d0a7b4a4da4ce9ba961d93f5, type: 3}
+    speed: 5
+    castTime: 1
+    spellPrefab: {fileID: 7519381945897681334, guid: b5b2501045fce4999b92195ac01df1a3, type: 3}
+    barColor: {r: 0.9150943, g: 0.90977174, b: 0.28920433, a: 1}
 --- !u!95 &6223602486601284184
 Animator:
   serializedVersion: 3

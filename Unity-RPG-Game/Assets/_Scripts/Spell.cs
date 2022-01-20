@@ -3,32 +3,71 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spell : MonoBehaviour
+[Serializable]
+public class Spell
 {
 
-    private Rigidbody2D myRigidbody;
-
+    [SerializeField] private string name;
+    [SerializeField] private int damage;
+    [SerializeField] private Sprite icon;
     [SerializeField] private float speed;
-    private Transform target;
-    void Start()
+    [SerializeField] private float castTime;
+    [SerializeField] private GameObject spellPrefab;
+    [SerializeField] private Color barColor;
+
+    public string MyName
     {
-        myRigidbody = GetComponent<Rigidbody2D>();
-        target = GameObject.Find("Target").transform;
-    }
-
-
-    private void FixedUpdate()
+        get
+        {
+            return name;
+        }
+    } 
+    public int MyDamage
     {
-        Vector2 direction = target.position - transform.position;
-
-        myRigidbody.velocity = direction.normalized * speed;
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        get
+        {
+            return damage;
+        }
     }
-
-    void Update()
+    public Sprite MyIcon
     {
-        
+        get
+        {
+            return icon;
+        }
     }
+    
+    public float MySpeed
+    {
+        get
+        {
+            return speed;
+        }
+    }
+    public float MyCastTime
+    {
+        get
+        {
+            return castTime;
+        }
+    }
+    
+    public GameObject MySpellPrefab
+    {
+        get
+        {
+            return spellPrefab;
+        }
+    }
+    
+    public Color MyBarColor
+    {
+        get
+        {
+            return barColor;
+        }
+    }
+    
+
+    
 }

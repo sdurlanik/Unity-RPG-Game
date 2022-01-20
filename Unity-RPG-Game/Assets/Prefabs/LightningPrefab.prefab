@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8721436517997301992}
   - component: {fileID: -849371350461878695}
   - component: {fileID: -2369879025969974277}
+  - component: {fileID: -6937652793297436430}
   m_Layer: 0
   m_Name: LightningPrefab
   m_TagString: Untagged
@@ -117,4 +118,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ddacc08c3ed246f8985c8905c528c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poof: {fileID: 3348326305729455859, guid: 76194295f127d4e688e935c68ddf4fc6, type: 3}
   speed: 5
+--- !u!61 &-6937652793297436430
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7519381945897681334}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 0.5}
+    newSize: {x: 1, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.5}
+  m_EdgeRadius: 0

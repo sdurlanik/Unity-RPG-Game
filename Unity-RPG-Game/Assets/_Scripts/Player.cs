@@ -15,10 +15,10 @@ public class Player : Character
 
     [SerializeField] private GameObject leftSpear;
     [SerializeField] private GameObject rightSpear;
-
-    [SerializeField] private GameObject[] spellPrefab;
     [SerializeField] private Transform[] spellExitPoints;
     private int spellExitIndex;
+
+    private SpellBook spellBook;
     
     [SerializeField] private Block[] blocks;
     private int blockIndex = 0;
@@ -33,6 +33,7 @@ public class Player : Character
 
     protected override void Start()
     {
+        spellBook = GetComponent<SpellBook>();
         health.Initialize(InitHealth,InitHealth);
         mana.Initialize(InitMana,InitMana);
 
@@ -102,6 +103,7 @@ public class Player : Character
     private IEnumerator StartAttack(int spellIndex)
     {
         coroutineRunning = true;
+        Spell newSpell = spellBook.CastSpell(spellIndex);
         
         myAnimator.SetBool("isAttacking",true);
         
@@ -118,14 +120,14 @@ public class Player : Character
         }
         
         
-        yield return new WaitForSeconds(1); // Debug için hardcode (Daha sonra değiştirilecek)
+        yield return new WaitForSeconds(newSpell.MyCastTime);
         
         myAnimator.SetBool("leftAttack", false);
         myAnimator.SetBool("rightAttack", false);
         myAnimator.SetBool("isAttacking", false);
         
-        Instantiate(spellPrefab[spellIndex], spellExitPoints[spellExitIndex].position, Quaternion.identity);
-
+        SpellScript s = Instantiate(newSpell.MySpellPrefab, spellExitPoints[spellExitIndex].position, Quaternion.identity).GetComponent<SpellScript>();
+        s.MyTarget = MyTarget;
         coroutineRunning = false;
     }
 
