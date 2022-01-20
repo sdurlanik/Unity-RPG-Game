@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 6223602486601284191}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -746,6 +746,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85247e104060649ccb6aeaf2de5311ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  castingBar: {fileID: 0}
+  spellName: {fileID: 0}
+  icon: {fileID: 0}
+  castTime: {fileID: 0}
   spells:
   - name: Fireball
     damage: 5
