@@ -8,27 +8,52 @@ public class Spell : MonoBehaviour
 
     private Rigidbody2D myRigidbody;
 
+    [SerializeField] private GameObject poof;
+
     [SerializeField] private float speed;
-    private Transform target;
+    public Transform MyTarget { get; set; }
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-        target = GameObject.Find("Target").transform;
+
     }
 
 
     private void FixedUpdate()
     {
-        Vector2 direction = target.position - transform.position;
+        if (MyTarget != null)
+        {
+            // Büyünün yönünü hesaplar
+            Vector2 direction = MyTarget.position - transform.position;
 
-        myRigidbody.velocity = direction.normalized * speed;
+            // Rigidbody kullanarak büyüyü hareket ettirir
+            myRigidbody.velocity = direction.normalized * speed;
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            // Büyünün açısını hesaplar ( Görselin uç kısmı karaktere bakacak şekilde )
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            
+            // Açı hesesabı yapıldıktan sonra döndürme işlemi yapılır
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+       
     }
 
-    void Update()
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        
+        // Çarpılan nesne MyTarget ve tagı HitBox ise işlem yapar
+        if (col.CompareTag("HitBox") && col.transform == MyTarget)
+        {
+            // poof efektini oluşturur
+            Instantiate(poof, col.transform.position, Quaternion.identity);
+            
+            // Çarptıktan sonra büyünün buglı hareket etmesini engeller
+            myRigidbody.velocity = Vector2.zero;
+            
+            // Hedefi sıfırlar
+            MyTarget = null;
+            
+            // Büyü prefabını siler
+            Destroy(gameObject);
+        }
     }
 }
