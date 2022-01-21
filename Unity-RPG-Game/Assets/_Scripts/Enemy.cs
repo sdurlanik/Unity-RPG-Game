@@ -13,6 +13,7 @@ public class Enemy : NPC
         healthGroup.alpha = 1;
         
         return base.Select();
+        
     }
 
     public override void Deselect()

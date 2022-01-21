@@ -16,9 +16,16 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField] protected Transform hitBox;
 
+   [SerializeField] protected Stat health;
+   
+   [SerializeField] private float InitHealth;
+
+
 
     protected virtual void Start()
     {
+        health.Initialize(InitHealth,InitHealth);
+
         myRigidbody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
     }
@@ -46,5 +53,17 @@ public abstract class Character : MonoBehaviour
             myAnimator.SetBool("isWalking", false);
         }
 
+    }
+
+    public virtual void TakeDamage(float damage)
+    {
+        print("Max " + health.MyMaxValue + "Current " + health.MyCurrentValue + "Damage: " + damage);
+        
+        health.MyCurrentValue -= damage;
+
+        if (health.MyCurrentValue <= 0)
+        {
+            myAnimator.SetTrigger("Die");
+        }
     }
 }

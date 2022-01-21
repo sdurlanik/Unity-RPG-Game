@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Player : Character
 {
-    [SerializeField]private Stat health;
     [SerializeField]private Stat mana;
-    [SerializeField] private float InitHealth = 100;
     [SerializeField] private float InitMana = 50;
     
     private SpriteRenderer playerSpriteRenderer;
@@ -34,7 +32,6 @@ public class Player : Character
     protected override void Start()
     {
         spellBook = GetComponent<SpellBook>();
-        health.Initialize(InitHealth,InitHealth);
         mana.Initialize(InitMana,InitMana);
 
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
@@ -131,7 +128,8 @@ public class Player : Character
         if (currentTarget != null && InlineOfSight())
         {
             SpellScript s = Instantiate(newSpell.MySpellPrefab, spellExitPoints[spellExitIndex].position, Quaternion.identity).GetComponent<SpellScript>();
-            s.MyTarget = currentTarget;
+            s.Initialize(currentTarget, newSpell.MyDamage);
+
         }
         
        
@@ -168,16 +166,24 @@ public class Player : Character
     // Targetin playerın görüş açısında olup olmadığını kontrol eder
     private bool InlineOfSight()
     {
-        Vector3 targetDirection = (MyTarget.transform.position - transform.position).normalized;
-
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDirection,
-            Vector2.Distance(transform.position, MyTarget.transform.position),256);
-
-        if (hit.collider == null)
+        if (MyTarget != null)
         {
-            return true;
-        }
+            // Hedefin yönünü hesaplar
+            Vector3 targetDirection = (MyTarget.transform.position - transform.position).normalized;
 
+            // Hedefe doğru bir raycast oluşturur
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDirection,
+                Vector2.Distance(transform.position, MyTarget.transform.position),256);
+
+            // Eğer "hit" block nesnelerine çarpmazsa büyü yapılabilir
+            if (hit.collider == null)
+            {
+                return true;
+            }
+
+        }
+        
+       // Eğer "hit" block nesnelerine çarparsa büyü yapılamaz
         return false;
     }
 
