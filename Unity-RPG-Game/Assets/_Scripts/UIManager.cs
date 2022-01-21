@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,32 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    private static UIManager instance;
+
+    public static UIManager MyInstance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<UIManager>();
+            }
+
+            return instance;
+        }
+    }
+    
     [SerializeField] private Button[] actionButtons;
 
     private KeyCode action1, action2, action3;
+
+    [SerializeField] private GameObject targetFrame;
+
+    private Stat healthStat;
     void Start()
     {
+        healthStat = targetFrame.GetComponentInChildren<Stat>();
+        
         action1 = KeyCode.Alpha1;
         action2 = KeyCode.Alpha2;
         action3 = KeyCode.Alpha3;
@@ -38,5 +60,24 @@ public class UIManager : MonoBehaviour
     private void ActionButtonOnClick(int buttonIndex)
     {
         actionButtons[buttonIndex].onClick.Invoke();
+    }
+
+    public void ShowTargetFrame(NPC target)
+    {
+        targetFrame.SetActive(true);
+
+        healthStat.Initialize(target.MyHealth.MyCurrentValue, target.MyHealth.MyMaxValue);
+
+        target.healthChanged += new NPC.HealthChanged(UpdateTargetFrame);
+    }
+
+    public void HideTargetFrame()
+    {
+        targetFrame.SetActive(false);
+    }
+
+    public void UpdateTargetFrame(float health)
+    {
+        healthStat.MyCurrentValue = health;
     }
 }

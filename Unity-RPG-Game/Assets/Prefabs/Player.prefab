@@ -718,8 +718,8 @@ MonoBehaviour:
   speed: 4
   hitBox: {fileID: 0}
   health: {fileID: 0}
-  mana: {fileID: 0}
   InitHealth: 100
+  mana: {fileID: 0}
   InitMana: 50
   leftSpear: {fileID: 6223602485394119019}
   rightSpear: {fileID: 6223602487155562870}

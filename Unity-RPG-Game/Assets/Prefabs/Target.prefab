@@ -144,8 +144,9 @@ GameObject:
   - component: {fileID: 1488516146}
   - component: {fileID: 1488516148}
   - component: {fileID: 1488516147}
+  - component: {fileID: 1778455121455744212}
   m_Layer: 0
-  m_Name: Fill
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,6 +209,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1778455121455744212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488516145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f811a014fd58ac24bbd0a0c5695eeb83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpSpeed: 1
+  statValue: {fileID: 0}
 --- !u!1 &1666393823
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,4 +504,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   hitBox: {fileID: 1326276892}
+  health: {fileID: 1778455121455744212}
+  InitHealth: 30
   healthGroup: {fileID: 1666393825}

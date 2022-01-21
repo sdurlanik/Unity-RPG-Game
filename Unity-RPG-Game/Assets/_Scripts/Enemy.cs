@@ -13,11 +13,20 @@ public class Enemy : NPC
         healthGroup.alpha = 1;
         
         return base.Select();
+        
     }
 
     public override void Deselect()
     {
         healthGroup.alpha = 0;
+        
         base.Deselect();
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        
+        OnHealthChanged(health.MyCurrentValue);
     }
 }

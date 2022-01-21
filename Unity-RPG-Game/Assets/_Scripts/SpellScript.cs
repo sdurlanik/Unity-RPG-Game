@@ -11,11 +11,19 @@ public class SpellScript : MonoBehaviour
     [SerializeField] private GameObject poof;
 
     [SerializeField] private float speed;
-    public Transform MyTarget { get; set; }
+    public Transform MyTarget { get; private set; }
+
+    private int damage;
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
 
+    }
+
+    public void Initialize(Transform target, int damage)
+    {
+        this.MyTarget = target;
+        this.damage = damage;
     }
 
 
@@ -43,12 +51,19 @@ public class SpellScript : MonoBehaviour
         // Çarpılan nesne MyTarget ve tagı HitBox ise işlem yapar
         if (col.CompareTag("HitBox") && col.transform == MyTarget)
         {
+            speed = 0;
+            
+            // Çarpan nesnemiz hitbox olduğu için parenti olan enemy nesnesindeki enemy scriptine
+            // ulaşıp TakeDamage() fonksiyonunu çağırıyoruz
+            
             // poof efektini oluşturur
             Instantiate(poof, col.transform.position, Quaternion.identity);
             
             // Çarptıktan sonra büyünün buglı hareket etmesini engeller
             myRigidbody.velocity = Vector2.zero;
             
+            col.GetComponentInParent<Enemy>().TakeDamage(damage);
+
             // Hedefi sıfırlar
             MyTarget = null;
             

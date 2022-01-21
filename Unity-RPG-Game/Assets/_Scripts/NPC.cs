@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class NPC : Character
 {
+    public delegate void HealthChanged(float health);
+
+    public event HealthChanged healthChanged;
     public virtual void Deselect()
     {
         
@@ -12,6 +15,15 @@ public class NPC : Character
     public virtual Transform Select()
     {
         return hitBox;
+    }
+
+    public void OnHealthChanged(float health)
+    {
+        if (healthChanged != null)
+        {
+            healthChanged(health);
+        }
+        
     }
 }
 

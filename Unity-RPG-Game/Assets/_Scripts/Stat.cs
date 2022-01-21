@@ -38,8 +38,13 @@ public class Stat : MonoBehaviour
             currentValue = value;
          }
 
-         currentFill = currentFill / MyMaxValue;
-         statValue.text = currentValue + "/" + MyMaxValue;
+         currentFill = currentValue / MyMaxValue;
+
+         if (statValue != null)
+         {
+            statValue.text = currentValue + "/" + MyMaxValue;
+         }
+         
       }
    }
 
